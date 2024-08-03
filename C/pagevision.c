@@ -4,33 +4,30 @@
 int main(int argc, char** argv)
 {
     // Verifica se o nome do arquivo foi passado como argumento
-        if (argc != 2)
-            {
-                    printf("Uso: ./EdgeDetection <caminho_da_imagem>\n");
-                            return -1;
-                                }
+    if (argc != 2) {
+        printf("Uso: ./EdgeDetection <caminho_da_imagem>\n");
+        return -1;
+    }
 
-                                    // Carrega a imagem
-                                        cv::Mat image = cv::imread(argv[1], cv::IMREAD_GRAYSCALE);
-                                            
-                                                // Verifica se a imagem foi carregada com sucesso
-                                                    if (image.empty())
-                                                        {
-                                                                printf("Erro ao abrir a imagem\n");
-                                                                        return -1;
-                                                                            }
+    // Carrega a imagem
+    cv::Mat image = cv::imread(argv[1], cv::IMREAD_GRAYSCALE);
 
-                                                                                // Aplicar detecção de bordas usando Canny
-                                                                                    cv::Mat edges;
-                                                                                        cv::Canny(image, edges, 100, 200);
+    // Verifica se a imagem foi carregada com sucesso
+    if (image.empty()) {
+        printf("Erro ao abrir a imagem\n");
+        return -1;
+    }
 
-                                                                                            // Exibir a imagem original e a imagem com as bordas detectadas
-                                                                                                cv::imshow("Imagem Original", image);
-                                                                                                    cv::imshow("Bordas Detectadas", edges);
+    // Aplicar detecção de bordas usando Canny
+    cv::Mat edges;
+    cv::Canny(image, edges, 100, 200);
 
-                                                                                                        // Espera até que uma tecla seja pressionada
-                                                                                                            cv::waitKey(0);
+    // Exibir a imagem original e a imagem com as bordas detectadas
+    cv::imshow("Imagem Original", image);
+    cv::imshow("Bordas Detectadas", edges);
 
-                                                                                                                return 0;
-                                                                                                                }
-                                                                                                                
+    // Espera até que uma tecla seja pressionada
+    cv::waitKey(0);
+
+    return 0;
+}
